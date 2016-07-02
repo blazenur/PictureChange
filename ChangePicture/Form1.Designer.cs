@@ -47,6 +47,12 @@
             this.cbAutoRun = new System.Windows.Forms.CheckBox();
             this.fbdFold = new System.Windows.Forms.FolderBrowserDialog();
             this.labweb = new System.Windows.Forms.Label();
+            this.isProxy = new System.Windows.Forms.CheckBox();
+            this.hostAddress = new System.Windows.Forms.Label();
+            this.hostPort = new System.Windows.Forms.Label();
+            this.hostAddressText = new System.Windows.Forms.TextBox();
+            this.hostAddressPort = new System.Windows.Forms.TextBox();
+            this.readIEProxy = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -176,9 +182,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 12F);
-            this.button1.Location = new System.Drawing.Point(24, 372);
+            this.button1.Location = new System.Drawing.Point(25, 391);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 51);
+            this.button1.Size = new System.Drawing.Size(139, 97);
             this.button1.TabIndex = 9;
             this.button1.Text = "保存";
             this.button1.UseVisualStyleBackColor = true;
@@ -206,11 +212,77 @@
             this.labweb.Text = "blazenur.com";
             this.labweb.Click += new System.EventHandler(this.labweb_Click);
             // 
+            // isProxy
+            // 
+            this.isProxy.AutoSize = true;
+            this.isProxy.Font = new System.Drawing.Font("宋体", 12F);
+            this.isProxy.Location = new System.Drawing.Point(218, 380);
+            this.isProxy.Name = "isProxy";
+            this.isProxy.Size = new System.Drawing.Size(111, 24);
+            this.isProxy.TabIndex = 16;
+            this.isProxy.Text = "使用代理";
+            this.isProxy.UseVisualStyleBackColor = true;
+            this.isProxy.CheckedChanged += new System.EventHandler(this.isProxy_CheckedChanged);
+            // 
+            // hostAddress
+            // 
+            this.hostAddress.AutoSize = true;
+            this.hostAddress.Location = new System.Drawing.Point(218, 427);
+            this.hostAddress.Name = "hostAddress";
+            this.hostAddress.Size = new System.Drawing.Size(97, 15);
+            this.hostAddress.TabIndex = 17;
+            this.hostAddress.Text = "服务器地址：";
+            this.hostAddress.Visible = false;
+            // 
+            // hostPort
+            // 
+            this.hostPort.AutoSize = true;
+            this.hostPort.Location = new System.Drawing.Point(218, 473);
+            this.hostPort.Name = "hostPort";
+            this.hostPort.Size = new System.Drawing.Size(67, 15);
+            this.hostPort.TabIndex = 18;
+            this.hostPort.Text = "端口号：";
+            this.hostPort.Visible = false;
+            // 
+            // hostAddressText
+            // 
+            this.hostAddressText.Location = new System.Drawing.Point(321, 424);
+            this.hostAddressText.Name = "hostAddressText";
+            this.hostAddressText.Size = new System.Drawing.Size(154, 25);
+            this.hostAddressText.TabIndex = 19;
+            this.hostAddressText.Visible = false;
+            // 
+            // hostAddressPort
+            // 
+            this.hostAddressPort.Location = new System.Drawing.Point(321, 470);
+            this.hostAddressPort.Name = "hostAddressPort";
+            this.hostAddressPort.Size = new System.Drawing.Size(81, 25);
+            this.hostAddressPort.TabIndex = 20;
+            this.hostAddressPort.Visible = false;
+            // 
+            // readIEProxy
+            // 
+            this.readIEProxy.AutoSize = true;
+            this.readIEProxy.Location = new System.Drawing.Point(366, 385);
+            this.readIEProxy.Name = "readIEProxy";
+            this.readIEProxy.Size = new System.Drawing.Size(135, 19);
+            this.readIEProxy.TabIndex = 21;
+            this.readIEProxy.Text = "读取IE代理设置";
+            this.readIEProxy.UseVisualStyleBackColor = true;
+            this.readIEProxy.Visible = false;
+            this.readIEProxy.CheckedChanged += new System.EventHandler(this.readIEProxy_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 205);
+            this.ClientSize = new System.Drawing.Size(513, 208);
+            this.Controls.Add(this.readIEProxy);
+            this.Controls.Add(this.hostAddressPort);
+            this.Controls.Add(this.hostAddressText);
+            this.Controls.Add(this.hostPort);
+            this.Controls.Add(this.hostAddress);
+            this.Controls.Add(this.isProxy);
             this.Controls.Add(this.labweb);
             this.Controls.Add(this.txtPath);
             this.Controls.Add(this.cbSaveAs);
@@ -223,11 +295,12 @@
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.labLoading);
             this.Controls.Add(this.pbPicture);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "ChangePicture:必应壁纸自动更换V0.3";
+            this.Text = "ChangePicture:必应壁纸自动更换V0.4";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
@@ -255,6 +328,12 @@
         private System.Windows.Forms.CheckBox cbAutoRun;
         private System.Windows.Forms.FolderBrowserDialog fbdFold;
         private System.Windows.Forms.Label labweb;
+        private System.Windows.Forms.CheckBox isProxy;
+        private System.Windows.Forms.Label hostAddress;
+        private System.Windows.Forms.Label hostPort;
+        private System.Windows.Forms.TextBox hostAddressText;
+        private System.Windows.Forms.TextBox hostAddressPort;
+        private System.Windows.Forms.CheckBox readIEProxy;
     }
 }
 

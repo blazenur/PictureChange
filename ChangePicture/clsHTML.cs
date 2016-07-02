@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,9 +18,27 @@ namespace ChangePicture
                 try
                 {
                 //使用代理
-                WebProxy gProxy = WebProxy.GetDefaultProxy();
+                //初始化注册表操作
+                ClsRegedit clsRegeditContral = new ClsRegedit("ChangePicture");
                 System.Net.WebRequest request = System.Net.WebRequest.Create(url);
-                request.Proxy = gProxy;
+                if (clsRegeditContral.GetKey("Proxy") == "1")
+                {
+                    //启动代理
+                    //读取IE默认代理
+                    if (clsRegeditContral.GetKey("ReadIEProxy") == "1")
+                    {
+                        WebProxy gProxy = WebProxy.GetDefaultProxy();
+                        request.Proxy = gProxy;
+                    }
+                    else
+                    {
+                        int c = 0;
+                        //将端口号转换为int类型
+                        int.TryParse(clsRegeditContral.GetKey("proxyPort"), out c);
+                        WebProxy gProxy = new WebProxy(clsRegeditContral.GetKey("proxyHost"), c);
+                        request.Proxy = gProxy;
+                    }
+                }
                     request.Timeout = 10000; //下载超时时间
                     request.Headers.Set("Pragma", "no-cache");
                     System.Net.WebResponse response = request.GetResponse();
